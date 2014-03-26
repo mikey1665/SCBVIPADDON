@@ -1,0 +1,4 @@
+name: VipClasses
+main: mike1665.classpacks.main.Main
+version: 1.0
+depend: [SuperCubeBrothers]
