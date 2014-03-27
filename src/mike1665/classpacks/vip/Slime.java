@@ -7,8 +7,11 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -20,7 +23,6 @@ import Pauldg7.plugins.SCB.main.SCB;
 
 public class Slime implements ClassInterface{
 
-	@Override
 	public void ArrowHit(Player arg0) {
 		// TODO Auto-generated method stub
 		
@@ -28,12 +30,6 @@ public class Slime implements ClassInterface{
 
 	@Override
 	public void Attack(Player arg0, Player arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void BlockPlace(Player arg0) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -71,9 +67,8 @@ public class Slime implements ClassInterface{
 	}
 
 	@Override
-	public void ShootArrow(Player arg0) {
-		// TODO Auto-generated method stub
-		
+	public boolean ShootArrow(Player arg0) {
+		return false;
 	}
 
 	@Override
@@ -102,11 +97,11 @@ public class Slime implements ClassInterface{
 	    player.getPlayer().getInventory().setBoots(b);
 	    ItemStack i1 = new ItemStack(Material.STONE_SWORD, 1);
 	    ItemStack i2 = new ItemStack(Material.SLIME_BALL, 10);
-	    ItemStack i3 = new ItemStack(Material.MONSTER_EGG, 1, (short)55);
+	    
+	    i1.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
 	    i1.addUnsafeEnchantment(Enchantment.KNOCKBACK, 1);
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i1 });
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i2 });
-	    player.getPlayer().getInventory().addItem(new ItemStack[] { i3 });
 	}
 
 	@Override
@@ -119,9 +114,18 @@ public class Slime implements ClassInterface{
 	public String id() {
 		return "slime";
 	}
+	
+	public boolean a(Player player) {
+	    return (player.getItemInHand() != null && player.getItemInHand().getType() == Material.SLIME_BALL);
+	  }
 
 	@Override
-	public void RightClick(Player player) {
+	public void ArrowHit(Player arg0, Entity arg1) {
+		
+	}
+
+	@Override
+	public void RightClick(Player player, Action arg1, Block arg2) {
 		if (a(player))
 	    {
 	      ItemStack i = new ItemStack(Material.SLIME_BALL);
@@ -136,8 +140,5 @@ public class Slime implements ClassInterface{
 	        player.getInventory().remove(h);
 	    }
 	}
-	public boolean a(Player player) {
-	    return (player.getItemInHand() != null && player.getItemInHand().getType() == Material.SLIME_BALL);
-	  }
 
 }
