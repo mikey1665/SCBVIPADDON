@@ -121,7 +121,7 @@ public class IronGolem implements ClassInterface{
 
 	@Override
 	public String id() {
-		return "slime";
+		return "irongolem";
 		}
 
 }

@@ -99,7 +99,7 @@ public class Ghast implements ClassInterface{
 
 
         ItemStack i0 = new ItemStack(Material.BOW, 1);
-        ItemStack i1 = new ItemStack(Material.GHAST_TEAR, 64);
+        ItemStack i1 = new ItemStack(Material.GHAST_TEAR, 1);
         ItemStack i2 = new ItemStack(Material.ARROW);
         i0.addUnsafeEnchantment(Enchantment.ARROW_INFINITE, 2);
         i0.addUnsafeEnchantment(Enchantment.ARROW_FIRE, 2);

@@ -3,7 +3,8 @@ package mike1665.classpacks.throwables;
 
 public enum ThrowReason
 {
-  SLIMEBALL(new SlimeBall());
+  SLIMEBALL(new SlimeBall()),
+  GOLDBLOCK(new GoldBlock());
 
   private EntityHitEvent e;
 
