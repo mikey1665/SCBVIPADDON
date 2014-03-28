@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.material.SpawnEgg;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -45,7 +46,8 @@ public class Bat implements ClassInterface{
 
 	@Override
 	public ItemStack Icon() {
-		ItemStack icon = new ItemStack(Material.MONSTER_EGG, 1, (short) EntityType.BAT.ordinal());
+		SpawnEgg egg = new SpawnEgg(EntityType.BAT);
+		ItemStack icon = egg.toItemStack(1);
 	    ItemMeta im = icon.getItemMeta();
 	    im.setDisplayName(ChatColor.RED + "Bat");
 	    icon.setItemMeta(im);
@@ -76,6 +78,7 @@ public class Bat implements ClassInterface{
 		return false;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void Spawn(Player player) {
 		
@@ -118,6 +121,7 @@ public class Bat implements ClassInterface{
 	    
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i1 });
 	    player.getPlayer().getInventory().setItem(0, i1);
+	    player.updateInventory();
 	}
 
 	@Override

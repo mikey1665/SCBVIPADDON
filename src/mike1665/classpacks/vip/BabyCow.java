@@ -2,10 +2,8 @@ package mike1665.classpacks.vip;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
-import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -18,7 +16,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import Pauldg7.plugins.SCB.interfaces.ClassInterface;
-import Pauldg7.plugins.SCB.managers.PlayerManager;
 
 public class BabyCow implements ClassInterface{
 
@@ -61,13 +58,14 @@ public class BabyCow implements ClassInterface{
 
 	@Override
 	public boolean Movement(Player p) {
-		if (p.getGameMode() != GameMode.CREATIVE && PlayerManager.get().ingame(p) == true) {
+		return false;
+		/*if (p.getGameMode() != GameMode.CREATIVE && PlayerManager.get().ingame(p) == true) {
 			 if(p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() != Material.AIR) {
 				 p.setAllowFlight(true);
 			 }
 		}
 		p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 2));
-		return true;
+		return true;*/
 	}
 
 	@Override
@@ -84,6 +82,7 @@ public class BabyCow implements ClassInterface{
 
 	@Override
 	public void Spawn(Player player) {
+		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 8000, 2));		
 		PlayerInventory i = player.getInventory();
         i.clear();
 	    ItemStack c = new ItemStack(Material.LEATHER_CHESTPLATE);
