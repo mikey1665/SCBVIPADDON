@@ -1,5 +1,7 @@
 package mike1665.classpacks.vip;
 
+import java.util.ArrayList;
+
 import mike1665.classpacks.throwables.ThrowItem;
 import mike1665.classpacks.throwables.ThrowReason;
 
@@ -42,7 +44,7 @@ public class Slime implements ClassInterface{
 
 	@Override
 	public String DisplayName() {
-		return ChatColor.GREEN + "Slime";
+		return ChatColor.GREEN + "[Slime] " + ChatColor.RESET;
 	}
 
 	@Override
@@ -77,6 +79,7 @@ public class Slime implements ClassInterface{
 	    ItemStack c = new ItemStack(Material.LEATHER_CHESTPLATE);
 	    ItemStack l = new ItemStack(Material.LEATHER_LEGGINGS);
 	    ItemStack b = new ItemStack(Material.LEATHER_BOOTS);
+	    
 	    LeatherArmorMeta cam = (LeatherArmorMeta)c.getItemMeta();
 	    LeatherArmorMeta lam = (LeatherArmorMeta)l.getItemMeta();
 	    LeatherArmorMeta bam = (LeatherArmorMeta)b.getItemMeta();
@@ -97,7 +100,15 @@ public class Slime implements ClassInterface{
 	    player.getPlayer().getInventory().setBoots(b);
 	    ItemStack i1 = new ItemStack(Material.STONE_SWORD, 1);
 	    ItemStack i2 = new ItemStack(Material.SLIME_BALL, 10);
+	    ItemMeta im1 = i2.getItemMeta();
 	    
+        im1.setDisplayName(ChatColor.GOLD + "Slime Grenade");
+        ArrayList<String> im3l = new ArrayList<String>();
+        im3l.add(ChatColor.DARK_AQUA + "Shoots slimeball grenades!");
+        
+        im1.setLore(im3l);
+        i2.setItemMeta(im1);
+   
 	    i1.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
 	    i1.addUnsafeEnchantment(Enchantment.KNOCKBACK, 1);
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i1 });
@@ -131,7 +142,7 @@ public class Slime implements ClassInterface{
 	      ItemStack i = new ItemStack(Material.SLIME_BALL);
 	      ThrowReason a = ThrowReason.SLIMEBALL;
 	      Location l = player.getEyeLocation();
-	      Vector v = player.getLocation().getDirection().multiply(2.5D);
+	      Vector v = player.getLocation().getDirection().multiply(2.0D);
 	      ItemStack h = player.getItemInHand();
 	      new ThrowItem(SCB.getInstance(), i, a, player, l, v, true, true);
 	      if (h.getAmount() > 1)

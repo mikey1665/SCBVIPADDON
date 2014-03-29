@@ -1,6 +1,7 @@
 package mike1665.classpacks.vip;
 
-import org.bukkit.Bukkit;
+import java.util.ArrayList;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -13,8 +14,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import Pauldg7.plugins.SCB.interfaces.ClassInterface;
 import Pauldg7.plugins.SCB.main.SCB;
@@ -41,14 +44,14 @@ public class Bedrock implements ClassInterface{
 
 	@Override
 	public String DisplayName() {
-		return ChatColor.BLACK + "Bedrock";
+		return ChatColor.BLACK + "[Bedrock] " + ChatColor.RESET;
 	}
 
 	@Override
 	public ItemStack Icon() {
 		ItemStack icon = new ItemStack(Material.BEDROCK);
 	    ItemMeta im = icon.getItemMeta();
-	    im.setDisplayName(ChatColor.BLACK + "Bedrock");
+	    im.setDisplayName(ChatColor.DARK_GRAY + "Bedrock");
 	    icon.setItemMeta(im);
 	    return icon;
 	}
@@ -64,19 +67,25 @@ public class Bedrock implements ClassInterface{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	Player p;
+
+	@SuppressWarnings("deprecation")
 	@Override
-	public void RightClick(Player player, Action arg1, Block arg2) {
+	public void RightClick(final Player player, Action arg1, Block arg2) {
 		if (b(player)) {
 				   player.getInventory().removeItem(new ItemStack(Material.BEDROCK, 1));
-				   player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 15, 2));
-				   player.setHealth(Integer.MAX_VALUE);
-				   p = player;
-				   Bukkit.getScheduler().scheduleSyncDelayedTask(SCB.getInstance(), new Runnable(){
-				    public void run(){
-				     p.setHealth(20.0);
-				    }
-				   },20*15);
+				   player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 2), true);
+				   player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 9), true);
+				   player.getItemInHand().setType(Material.WOOD_SWORD);
+				   player.updateInventory();
+				   
+				   new BukkitRunnable() {
+					
+					@Override
+					public void run() {
+						if (player.hasPotionEffect(PotionEffectType.SLOW))player.removePotionEffect(PotionEffectType.SLOW);
+						if (player.hasPotionEffect(PotionEffectType.DAMAGE_RESISTANCE))player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+					}
+				}.runTaskLater(SCB.getInstance(), 20*15);
 				  }
 			}
 
@@ -91,22 +100,22 @@ public class Bedrock implements ClassInterface{
 
 		PlayerInventory i = player.getInventory();
         i.clear();
-        ItemStack h = new ItemStack(Material.LEATHER_HELMET);
+        ItemStack h = new ItemStack(Material.SKULL_ITEM, 1, (short)3);
 	    ItemStack c = new ItemStack(Material.LEATHER_CHESTPLATE);
 	    ItemStack l = new ItemStack(Material.LEATHER_LEGGINGS);
 	    ItemStack b = new ItemStack(Material.LEATHER_BOOTS);
 	    
-	    LeatherArmorMeta helm = (LeatherArmorMeta)h.getItemMeta();
 	    LeatherArmorMeta cam = (LeatherArmorMeta)c.getItemMeta();
 	    LeatherArmorMeta lam = (LeatherArmorMeta)l.getItemMeta();
 	    LeatherArmorMeta bam = (LeatherArmorMeta)b.getItemMeta();
 	    
-	    helm.setColor(Color.BLACK);
+	    SkullMeta hsm = (SkullMeta)h.getItemMeta();
+	    hsm.setOwner("scraftbrothers5");
+	    
 	    cam.setColor(Color.BLACK);
 	    lam.setColor(Color.BLACK);
 	    bam.setColor(Color.BLACK);
 	    
-	    h.setItemMeta(helm);
 	    c.setItemMeta(cam);
 	    l.setItemMeta(lam);
 	    b.setItemMeta(bam);
@@ -123,6 +132,14 @@ public class Bedrock implements ClassInterface{
 
 	    i1.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
 	    i1.addUnsafeEnchantment(Enchantment.KNOCKBACK, 2);
+	    
+	    ItemMeta im1 = i1.getItemMeta();
+        im1.setDisplayName(ChatColor.DARK_AQUA + "Super Bedrock *read the lore*");
+        ArrayList<String> im3l = new ArrayList<String>();
+        im3l.add(ChatColor.DARK_AQUA + "Be god for 15 secs with slowness!");
+        
+        im1.setLore(im3l);
+        i1.setItemMeta(im1);
 	    
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i1 });
 	    player.getPlayer().getInventory().setItem(0, i1);

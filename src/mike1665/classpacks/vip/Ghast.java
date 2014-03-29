@@ -37,14 +37,14 @@ public class Ghast implements ClassInterface{
 
 	@Override
 	public String DisplayName() {
-		return ChatColor.DARK_GRAY + "Ghast";
+		return ChatColor.DARK_GRAY + "[Ghast] " + ChatColor.RESET;
 	}
 
 	@Override
 	public ItemStack Icon() {
 		ItemStack icon = new ItemStack(Material.GHAST_TEAR);
 	    ItemMeta im = icon.getItemMeta();
-	    im.setDisplayName(ChatColor.GREEN + "Ghast");
+	    im.setDisplayName(ChatColor.GRAY + "Ghast");
 	    icon.setItemMeta(im);
 	    return icon;
 	}

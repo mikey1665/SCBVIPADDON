@@ -1,5 +1,6 @@
 package mike1665.classpacks.vip;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -8,6 +9,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
@@ -33,20 +35,20 @@ public class EnderDragon implements ClassInterface{
 
 	@Override
 	public void Death(Player arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public String DisplayName() {
-		// TODO Auto-generated method stub
-		return null;
+		return ChatColor.DARK_PURPLE + "[Ender Dragon] "+ ChatColor.RESET;
 	}
 
 	@Override
 	public ItemStack Icon() {
-		// TODO Auto-generated method stub
-		return null;
+		ItemStack icon = new ItemStack(Material.DRAGON_EGG);
+	    ItemMeta im = icon.getItemMeta();
+	    im.setDisplayName(ChatColor.DARK_PURPLE + "Ender Dragon");
+	    icon.setItemMeta(im);
+	    return icon;
 	}
 
 	@Override
@@ -98,11 +100,8 @@ public class EnderDragon implements ClassInterface{
 	    player.getPlayer().getInventory().setLeggings(l);
 	    player.getPlayer().getInventory().setBoots(b);
 	    ItemStack i1 = new ItemStack(Material.STONE_SWORD, 1);
-	    ItemStack i2 = new ItemStack(Material.ENDER_PEARL, 32);
-	    i1.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
-	    i1.addUnsafeEnchantment(Enchantment.KNOCKBACK, 2);
-	    player.getPlayer().getInventory().addItem(new ItemStack[] { i1 });
-	    player.getPlayer().getInventory().addItem(new ItemStack[] { i2 });
+	    ItemStack i2 = new ItemStack(Material.ENDER_PEARL, 5);
+	    player.getPlayer().getInventory().addItem(new ItemStack[] { i1,i2 });
 	    BukkitRunnable br = new BukkitRunnable()
 	    {
 	      public void run()
@@ -121,8 +120,7 @@ public class EnderDragon implements ClassInterface{
 
 	@Override
 	public String id() {
-		// TODO Auto-generated method stub
-		return null;
+		return "enderdragon";
 	}
 
 }

@@ -1,5 +1,7 @@
 package mike1665.classpacks.vip;
 
+import java.util.ArrayList;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -14,8 +16,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import Pauldg7.plugins.SCB.interfaces.ClassInterface;
+import Pauldg7.plugins.SCB.main.SCB;
 
 public class BabyCow implements ClassInterface{
 
@@ -26,8 +30,15 @@ public class BabyCow implements ClassInterface{
 	}
 
 	@Override
-	public void Attack(Player attacker, Player attacke) {
-			attacke.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 10, 1), true);
+	public void Attack(Player attacker, final Player victim) {
+			victim.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, Integer.MAX_VALUE, 1), true);
+			new BukkitRunnable() {
+				
+				@Override
+				public void run() {
+					if (victim.hasPotionEffect(PotionEffectType.CONFUSION)) victim.removePotionEffect(PotionEffectType.CONFUSION);
+				}
+			}.runTaskLater(SCB.getInstance(), 20*5);
 		}
 
 	@Override
@@ -38,7 +49,7 @@ public class BabyCow implements ClassInterface{
 
 	@Override
 	public String DisplayName() {
-		return ChatColor.RED + "Baby Cow";
+		return ChatColor.RED + "[Baby Cow] " + ChatColor.RESET;
 	}
 
 	@Override
@@ -114,6 +125,14 @@ public class BabyCow implements ClassInterface{
 
 	    i1.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 2);
 	    i1.addUnsafeEnchantment(Enchantment.KNOCKBACK, 1);
+	    
+	    ItemMeta im1 = i1.getItemMeta();
+        im1.setDisplayName(ChatColor.RED + "Mushroom of Nausuea");
+        ArrayList<String> im3l = new ArrayList<String>();
+        im3l.add(ChatColor.DARK_AQUA + "Gives people nausea for 5 seconds!");
+        
+        im1.setLore(im3l);
+        i1.setItemMeta(im1);
 	    
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i1 });
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i2 });

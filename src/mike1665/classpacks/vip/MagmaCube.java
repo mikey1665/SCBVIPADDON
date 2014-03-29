@@ -37,14 +37,14 @@ public class MagmaCube implements ClassInterface{
 
 	@Override
 	public String DisplayName() {
-		return ChatColor.RED + "Magma Cube";
+		return ChatColor.RED + "[MagmaCube]" + ChatColor.RESET;
 	}
 
 	@Override
 	public ItemStack Icon() {
 		ItemStack icon = new ItemStack(Material.MAGMA_CREAM);
 	    ItemMeta im = icon.getItemMeta();
-	    im.setDisplayName(ChatColor.GREEN + "Magma Cube");
+	    im.setDisplayName(ChatColor.RED + "Magma Cube");
 	    icon.setItemMeta(im);
 	    return icon;
 	}

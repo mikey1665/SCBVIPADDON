@@ -1,5 +1,7 @@
 package mike1665.classpacks.vip;
 
+import java.util.ArrayList;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -12,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
+
 import Pauldg7.plugins.SCB.interfaces.ClassInterface;
 
 public class IronGolem implements ClassInterface{
@@ -36,14 +39,14 @@ public class IronGolem implements ClassInterface{
 
 	@Override
 	public String DisplayName() {
-		return ChatColor.GRAY + "Iron Golem";
+		return ChatColor.WHITE + "[IronGolem] " + ChatColor.WHITE;
 	}
 
 	@Override
 	public ItemStack Icon() {
 		ItemStack icon = new ItemStack(Material.RED_ROSE);
 	    ItemMeta im = icon.getItemMeta();
-	    im.setDisplayName(ChatColor.GREEN + "Iron Golem");
+	    im.setDisplayName(ChatColor.WHITE + "Iron Golem");
 	    icon.setItemMeta(im);
 	    return icon;
 	}
@@ -106,6 +109,14 @@ public class IronGolem implements ClassInterface{
 	    i1.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
 	    i1.addUnsafeEnchantment(Enchantment.KNOCKBACK, 1);
 	    i2.addUnsafeEnchantment(Enchantment.KNOCKBACK, 5);
+	    
+	    ItemMeta im1 = i2.getItemMeta();
+        im1.setDisplayName(ChatColor.RED + "Pusher");
+        ArrayList<String> im3l = new ArrayList<String>();
+        im3l.add(ChatColor.DARK_RED + "Pushes them out of the way!");
+        
+        im1.setLore(im3l);
+        i2.setItemMeta(im1);
 	    
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i1 });
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i2 });

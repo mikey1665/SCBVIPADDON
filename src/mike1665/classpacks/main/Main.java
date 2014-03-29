@@ -4,10 +4,13 @@ import mike1665.classpacks.vip.BabyCow;
 import mike1665.classpacks.vip.Bat;
 import mike1665.classpacks.vip.Bedrock;
 import mike1665.classpacks.vip.BudderGolem;
+import mike1665.classpacks.vip.EnderDragon;
+import mike1665.classpacks.vip.Firework;
 import mike1665.classpacks.vip.Ghast;
 import mike1665.classpacks.vip.IronGolem;
 import mike1665.classpacks.vip.MagmaCube;
 import mike1665.classpacks.vip.Slime;
+import mike1665.classpacks.vip.Wolf;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,6 +28,9 @@ public class Main extends JavaPlugin
     ClassManager.get().addVipClass("bat", new Bat());
     ClassManager.get().addVipClass("buddergolem", new BudderGolem());
     ClassManager.get().addVipClass("bedrock", new Bedrock());
+    ClassManager.get().addVipClass("enderdagon", new EnderDragon());
+    ClassManager.get().addVipClass("firework", new Firework());
+    ClassManager.get().addVipClass("wolf", new Wolf());
   }
 
   public void onDisable()

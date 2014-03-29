@@ -1,5 +1,7 @@
 package mike1665.classpacks.vip;
 
+import java.util.ArrayList;
+
 import mike1665.classpacks.throwables.ThrowItem;
 import mike1665.classpacks.throwables.ThrowReason;
 
@@ -43,14 +45,14 @@ public class BudderGolem implements ClassInterface{
 
 	@Override
 	public String DisplayName() {
-		return ChatColor.YELLOW + "Budder Golem";
+		return ChatColor.YELLOW + "[Budder Golem] " + ChatColor.RESET;
 	}
 
 	@Override
 	public ItemStack Icon() {
-		ItemStack icon = new ItemStack(Material.GOLD_BLOCK);
+		ItemStack icon = new ItemStack(Material.GOLD_AXE);
 	    ItemMeta im = icon.getItemMeta();
-	    im.setDisplayName(ChatColor.BLACK + "Budder Golem");
+	    im.setDisplayName(ChatColor.YELLOW + "Budder Golem" + ChatColor.RESET);
 	    icon.setItemMeta(im);
 	    return icon;
 	}
@@ -130,6 +132,14 @@ public class BudderGolem implements ClassInterface{
 	    i1.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 1);
 	    i1.addUnsafeEnchantment(Enchantment.KNOCKBACK, 3);
 	    
+	    ItemMeta im2 = i2.getItemMeta();
+        im2.setDisplayName(ChatColor.YELLOW + "Butter!");
+        ArrayList<String> im3l = new ArrayList<String>();
+        im3l.add(ChatColor.DARK_AQUA + "Shoots budder grenades!");
+        
+        im2.setLore(im3l);
+        i2.setItemMeta(im2);
+        
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i2} );
 	    player.getPlayer().getInventory().addItem(new ItemStack[] { i1 });
 	    player.getPlayer().getInventory().setItem(1, i2);
