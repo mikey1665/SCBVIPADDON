@@ -9,7 +9,6 @@ import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +16,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import Pauldg7.plugins.SCB.interfaces.ClassInterface;
-import Pauldg7.plugins.SCB.managers.Game;
 
 public class Wolf implements ClassInterface{
 
@@ -66,16 +64,26 @@ public class Wolf implements ClassInterface{
 	}
 
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void RightClick(Player player, Action arg1, Block arg2) {
 		if (a(player)) {
-			player.getItemInHand().setType(Material.AIR);	
-			for(Player p: Game.get().getPlys(Game.get().getArena(player))) {
-				Wolf wolf = (Wolf) player.getWorld().spawnEntity(player.getLocation(), EntityType.WOLF);
-				//wolf.Attack(p, arg1);
+			player.getInventory().removeItem(player.getItemInHand());
+			player.updateInventory();
+			
+				org.bukkit.entity.Wolf wm = (org.bukkit.entity.Wolf) player.getWorld().spawnEntity(player.getLocation(), EntityType.WOLF);
+				wm.setOwner(player);
+				wm.setTamed(true);
+				wm.setAngry(false);
+				wm.setCustomName(ChatColor.GREEN + "" + player.getName().toString() + "'s Pet");
+				
+				org.bukkit.entity.Wolf wm2 = (org.bukkit.entity.Wolf) player.getWorld().spawnEntity(player.getLocation(), EntityType.WOLF);
+				wm2.setOwner(player);
+				wm2.setTamed(true);
+				wm2.setAngry(false);
+				wm2.setCustomName(ChatColor.GREEN + "" + player.getName().toString() + "'s Pet 2");
 			}			
 		}
-	}
 
 	@Override
 	public boolean ShootArrow(Player arg0) {
@@ -112,7 +120,7 @@ public class Wolf implements ClassInterface{
 	    player.getPlayer().getInventory().setBoots(b);
 	    
 	    ItemStack i1 = new ItemStack(Material.BONE, 1);
-	    ItemStack i2 = new ItemStack(Material.RAW_BEEF, 1);
+	    ItemStack i2 = new ItemStack(Material.MONSTER_EGG, 1, (short)EntityType.WOLF.ordinal());
 	    
 	    ItemMeta im1 = i2.getItemMeta();
         im1.setDisplayName(ChatColor.RED + "Double Team");
@@ -139,7 +147,7 @@ public class Wolf implements ClassInterface{
 		return "wolf";
 	}
 	public boolean a(Player player) {
-	    return (player.getItemInHand() != null && player.getItemInHand().getType() == Material.RAW_BEEF);
+	    return (player.getItemInHand() != null && player.getItemInHand().getType() == Material.MONSTER_EGG);
 	  }
 
 }

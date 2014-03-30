@@ -99,10 +99,10 @@ public class Slime implements ClassInterface{
 	    player.getPlayer().getInventory().setLeggings(l);
 	    player.getPlayer().getInventory().setBoots(b);
 	    ItemStack i1 = new ItemStack(Material.STONE_SWORD, 1);
-	    ItemStack i2 = new ItemStack(Material.SLIME_BALL, 10);
+	    ItemStack i2 = new ItemStack(Material.SLIME_BALL, 3);
 	    ItemMeta im1 = i2.getItemMeta();
 	    
-        im1.setDisplayName(ChatColor.GOLD + "Slime Grenade");
+        im1.setDisplayName(ChatColor.GOLD + "Slime TNT");
         ArrayList<String> im3l = new ArrayList<String>();
         im3l.add(ChatColor.DARK_AQUA + "Shoots slimeball grenades!");
         
@@ -142,7 +142,7 @@ public class Slime implements ClassInterface{
 	      ItemStack i = new ItemStack(Material.SLIME_BALL);
 	      ThrowReason a = ThrowReason.SLIMEBALL;
 	      Location l = player.getEyeLocation();
-	      Vector v = player.getLocation().getDirection().multiply(2.0D);
+	      Vector v = player.getLocation().getDirection().multiply(1.5D);
 	      ItemStack h = player.getItemInHand();
 	      new ThrowItem(SCB.getInstance(), i, a, player, l, v, true, true);
 	      if (h.getAmount() > 1)

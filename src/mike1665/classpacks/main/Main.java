@@ -7,9 +7,11 @@ import mike1665.classpacks.vip.BudderGolem;
 import mike1665.classpacks.vip.EnderDragon;
 import mike1665.classpacks.vip.Firework;
 import mike1665.classpacks.vip.Ghast;
+import mike1665.classpacks.vip.Herobrine;
 import mike1665.classpacks.vip.IronGolem;
 import mike1665.classpacks.vip.MagmaCube;
 import mike1665.classpacks.vip.Slime;
+import mike1665.classpacks.vip.Wizard;
 import mike1665.classpacks.vip.Wolf;
 
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,6 +33,8 @@ public class Main extends JavaPlugin
     ClassManager.get().addVipClass("enderdagon", new EnderDragon());
     ClassManager.get().addVipClass("firework", new Firework());
     ClassManager.get().addVipClass("wolf", new Wolf());
+    ClassManager.get().addVipClass("herbrobe", new Herobrine());
+    ClassManager.get().addVipClass("wizard", new Wizard());
   }
 
   public void onDisable()
