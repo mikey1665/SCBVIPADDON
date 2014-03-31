@@ -2,14 +2,17 @@ package mike1665.classpacks.main;
 
 import mike1665.classpacks.vip.BabyCow;
 import mike1665.classpacks.vip.Bat;
+import mike1665.classpacks.vip.Beacon;
 import mike1665.classpacks.vip.Bedrock;
 import mike1665.classpacks.vip.BudderGolem;
 import mike1665.classpacks.vip.EnderDragon;
 import mike1665.classpacks.vip.Firework;
 import mike1665.classpacks.vip.Ghast;
 import mike1665.classpacks.vip.Herobrine;
+import mike1665.classpacks.vip.Horse;
 import mike1665.classpacks.vip.IronGolem;
 import mike1665.classpacks.vip.MagmaCube;
+import mike1665.classpacks.vip.Sethbling;
 import mike1665.classpacks.vip.Slime;
 import mike1665.classpacks.vip.Wizard;
 import mike1665.classpacks.vip.Wolf;
@@ -35,6 +38,10 @@ public class Main extends JavaPlugin
     ClassManager.get().addVipClass("wolf", new Wolf());
     ClassManager.get().addVipClass("herbrobe", new Herobrine());
     ClassManager.get().addVipClass("wizard", new Wizard());
+    ClassManager.get().addVipClass("sethbling", new Sethbling());
+    ClassManager.get().addVipClass("horse", new Horse());
+    ClassManager.get().addVipClass("cake", new mike1665.classpacks.vip.Cake());
+    ClassManager.get().addVipClass("beacon", new Beacon());
   }
 
   public void onDisable()

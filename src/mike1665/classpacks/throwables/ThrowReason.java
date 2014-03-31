@@ -4,7 +4,11 @@ package mike1665.classpacks.throwables;
 public enum ThrowReason
 {
   SLIMEBALL(new SlimeBall()),
-  GOLDBLOCK(new GoldBlock());
+  GOLDBLOCK(new GoldBlock()),
+  SETHDIODE(new SethDiode()),
+  SETHREDSTONE(new SethRedstone()),
+  SETHCOMPARATOR(new SethComparator()),
+  CAKE(new Cake());
 
   private EntityHitEvent e;
 
